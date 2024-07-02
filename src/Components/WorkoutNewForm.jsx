@@ -2,7 +2,19 @@ import React from 'react'
 import { useState } from 'react'
 
 const WorkoutNewForm = () => {
-  const [ workout, setWorkout ] = useState({})
+  const [ workout, setWorkoutDetails ] = useState({
+    type: "",
+    durationInMinutes: 0,
+    caloriesBurned: 0,
+    date: ""
+  })
+
+  const handleTextChange = (e) =>  {
+    setWorkoutDetails({...workout, [e.target.id]: e.target.value})
+  }
+  
+  console.log(workout)
+
   return (
     <div>WorkoutNewForm
       <form>
@@ -11,6 +23,7 @@ const WorkoutNewForm = () => {
             id='type'
             type='text'
             value={workout.type}
+            onChange={handleTextChange}
             required
             />
         </label>
@@ -21,6 +34,7 @@ const WorkoutNewForm = () => {
             id='durationInMinutes'
             type='number'
             value={workout.durationInMinutes}
+            onChange={handleTextChange}
             required
             />
         </label>
@@ -31,6 +45,7 @@ const WorkoutNewForm = () => {
             id='caloriesBurned'
             type='number'
             value={workout.caloriesBurned}
+            onChange={handleTextChange}
             required
             />
         </label>
@@ -41,6 +56,7 @@ const WorkoutNewForm = () => {
             id='date'
             type='date'
             value={workout.date}
+            onChange={handleTextChange}
             required
             />
         </label>
