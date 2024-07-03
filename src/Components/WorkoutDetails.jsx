@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 const API = import.meta.env.VITE_API_URL
 
@@ -16,6 +16,7 @@ const WorkoutDetails = () => {
 
   let { id } = useParams()
   let navigate = useNavigate()
+
   useEffect(() => {
     fetch(`${API}/workouts/${id}`)
       .then(res => res.json())
@@ -27,11 +28,22 @@ const WorkoutDetails = () => {
         navigate('not-found')
       })
   }, [id])
+
+  const handleDelete = () => {
+    fetch(`${API}/workouts/${id}`, {
+      method: "DELETE"
+    })
+    .then(() => {
+      navigate('/workouts')
+    })
+  }
   
   return (
     <div>WorkoutDetails
       <p>{workout.type}</p>
       <p>{workout.durationInMinutes}</p>
+      <Link to={`/workouts/${id}/edit`}><button>Edit</button></Link> 
+      <button onClick={handleDelete}>Delete</button>
     </div>
   )
 }

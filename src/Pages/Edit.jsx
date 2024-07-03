@@ -1,8 +1,11 @@
 import React from 'react'
+import WorkoutEditForm from '../Components/WorkoutEditForm'
 
 const Edit = () => {
   return (
-    <div>Edit</div>
+    <div>
+      <WorkoutEditForm />
+    </div>
   )
 }
 
