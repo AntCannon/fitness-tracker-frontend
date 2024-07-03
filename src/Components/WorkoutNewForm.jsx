@@ -15,8 +15,6 @@ const WorkoutNewForm = () => {
   const handleTextChange = (e) =>  {
     setWorkoutDetails({...workout, [e.target.id]: e.target.value})
   }
-  
-  console.log(workout)
 
   const navigate = useNavigate()
 

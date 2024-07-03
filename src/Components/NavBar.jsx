@@ -7,6 +7,9 @@ const NavBar = () => {
     <div>
       NavBar
       <button>
+        <Link to="/workouts">Index</Link>
+      </button>
+      <button>
         <Link to="/workouts/new">New Workout</Link>
       </button>
     </div>
