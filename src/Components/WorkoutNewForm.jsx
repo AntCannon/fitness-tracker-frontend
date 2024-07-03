@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const API = import.meta.env.VITE_API_URL
 
@@ -17,6 +18,8 @@ const WorkoutNewForm = () => {
   
   console.log(workout)
 
+  const navigate = useNavigate()
+
   const addWorkout = () => {
     fetch(`${API}/workouts`, {
       method: "POST",
@@ -25,6 +28,7 @@ const WorkoutNewForm = () => {
         "Content-Type": "application/json"
       }
     })
+    .then(() => navigate('/workouts'))
   }
 
   const handleSubmit = (e) => {
