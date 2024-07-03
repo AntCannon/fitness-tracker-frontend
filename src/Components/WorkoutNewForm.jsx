@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 
+const API = import.meta.env.VITE_API_URL
+
 const WorkoutNewForm = () => {
   const [ workout, setWorkoutDetails ] = useState({
     type: "",
@@ -15,9 +17,30 @@ const WorkoutNewForm = () => {
   
   console.log(workout)
 
+  const addWorkout = () => {
+    fetch(`${API}/workouts`, {
+      method: "POST",
+      body: JSON.stringify(workout),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    addWorkout()
+    setWorkoutDetails({
+      type: "",
+      durationInMinutes: 0,
+      caloriesBurned: 0,
+      date: ""
+    })
+  }
+
   return (
     <div>WorkoutNewForm
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Type: <input
             id='type'
